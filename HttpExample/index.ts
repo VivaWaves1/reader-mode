@@ -33,7 +33,14 @@ function rerouteLinks(html: JSDOM, url: string, base: string): void {
 }
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    let url = req.query.q || (req.body && req.body.url);
+    let url = req.query.q;
+    if (!url) {
+        context.res = {
+            status: 400,
+            body: "Please pass a url on the query string or in the request body. Example: http://read.jonot.me/?q=https://www.nytimes.com/2020/05/29/us/politics/trump-coronavirus.html"
+        };
+        return;
+    }
     const response = await axios.get(normalizeURL(url));
     const body = response.data;
     const doc = new JSDOM(body);
@@ -79,7 +86,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         }
     }
     </style>
-    <title>Document</title>
+    <title>${article.title || "Reader Mode"}</title>
     <base href="${url}"/>
 </head>
 <body>

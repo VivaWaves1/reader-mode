@@ -6,7 +6,7 @@ Firefox Reader Mode inside an Azure Function.
 
 ## Future Plans
 - [ ] Make link shorter `read.jonot.me/<URL_HERE>`
-- [ ] Use HTTPS
+- [X] Use HTTPS
 - [X] Fix links
 - [X] Fix Images
 - [ ] Clean up code (At least put html in a separate file)
