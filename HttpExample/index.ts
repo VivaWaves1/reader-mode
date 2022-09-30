@@ -29,6 +29,10 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     a {
         color: #08f;
     }
+    img {
+        width: 100%;
+        height: auto;
+    }
     @media (prefers-color-scheme: dark) {
         body {
             background-color: #222;
