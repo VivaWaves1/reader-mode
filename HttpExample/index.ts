@@ -19,7 +19,7 @@ function normalizeURL(url: string): string {
     return url;
 }
 
-function rerouteLinks(html: JSDOM, url: string, base: string): void {
+function rerouteLinks(html: JSDOM, url: string, base: string, https: boolean): void {
     const links = html.window.document.querySelectorAll("a");
     for (const link of links) {
         // check if link is relative
@@ -27,7 +27,12 @@ function rerouteLinks(html: JSDOM, url: string, base: string): void {
             // set link to absolute
             link.href = url + link.href;
         }
-        link.href = `http://${base}/?q=${link.href}`;
+        
+        if (https) {
+            link.href = `https://${base}/?q=${link.href}`;
+        } else {
+            link.href = `http://${base}/?q=${link.href}`;
+        }
 
     }
 }
@@ -44,7 +49,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const response = await axios.get(normalizeURL(url));
     const body = response.data;
     const doc = new JSDOM(body);
-    rerouteLinks(doc, normalizeURL(url), getHost(req));
+    rerouteLinks(doc, normalizeURL(url), getHost(req), req.headers["x-forwarded-proto"] === "https");
     let reader = new Readability(doc.window.document);
     let article = reader.parse();
     if (article === null) {
