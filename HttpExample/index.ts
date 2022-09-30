@@ -3,12 +3,41 @@ import { Readability } from "@mozilla/readability";
 import { JSDOM } from "jsdom";
 import axios from "axios";
 
+// Get Host header from azure function
+function getHost(req: HttpRequest): string {
+    if (req.headers && req.headers["host"]) {
+        return req.headers["host"];
+    }
+    return "";
+}
+
+// normalize url
+function normalizeURL(url: string): string {
+    if (!url.startsWith("http")) {
+        url = "http://" + url;
+    }
+    return url;
+}
+
+function rerouteLinks(html: JSDOM, url: string, base: string): void {
+    const links = html.window.document.querySelectorAll("a");
+    for (const link of links) {
+        // check if link is relative
+        if (link.href.startsWith("/")) {
+            // set link to absolute
+            link.href = url + link.href;
+        }
+        link.href = `http://${base}/?q=${link.href}`;
+
+    }
+}
+
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     let url = req.query.q || (req.body && req.body.url);
-    console.log(url);
-    const response = await axios.get(url);
+    const response = await axios.get(normalizeURL(url));
     const body = response.data;
     const doc = new JSDOM(body);
+    rerouteLinks(doc, normalizeURL(url), getHost(req));
     let reader = new Readability(doc.window.document);
     let article = reader.parse();
     if (article === null) {
