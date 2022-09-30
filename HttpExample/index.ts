@@ -11,6 +11,13 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const doc = new JSDOM(body);
     let reader = new Readability(doc.window.document);
     let article = reader.parse();
+    if (article === null) {
+        context.res = {
+            status: 400,
+            body: "Could not parse article :("
+        };
+        return
+    }
     let template = `
     <!DOCTYPE html>
 <html lang="en">
@@ -44,9 +51,10 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     }
     </style>
     <title>Document</title>
+    <base href="${url}"/>
 </head>
 <body>
-    <h1>${article.title}</h1>
+    <h1>${article.title || ""}</h1>
     <h2>${article.byline || ""}</h2>
     ${article.content}
 </body>
