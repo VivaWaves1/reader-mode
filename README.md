@@ -9,4 +9,5 @@ Firefox Reader Mode inside an Azure Function.
 - [ ] Use HTTPS
 - [ ] Fix links
 - [ ] Fix Images
+- [ ] Clean up code (At least put html in a separate file)
 Am I going to do any of these? Probably not. Let me know if you know how to do any of these. :D
