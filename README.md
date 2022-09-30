@@ -2,7 +2,7 @@
 Firefox Reader Mode inside an Azure Function. 
 
 ## Usage
-`http://read.jonot.me/?q=<URL_HERE>
+`https://read.jonot.me/?q=<URL_HERE>
 
 ## Future Plans
 - [ ] Make link shorter `read.jonot.me/<URL_HERE>`
