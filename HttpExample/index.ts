@@ -43,7 +43,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 </head>
 <body>
     <h1>${article.title}</h1>
-    <h2>${article.byline}</h2>
+    <h2>${article.byline || ""}</h2>
     ${article.content}
 </body>
 </html>`
