@@ -3,12 +3,10 @@
 	"version": "1.0.0",
 	"description": "",
 	"scripts": {
-		"build:service": "esbuild HttpExample/index.ts --bundle --platform=node --target=node16.14 --loader:.html=text --external:./node_modules/* --outfile=dist/HttpExample/index.js",
-		"build:about": "esbuild AboutPage/index.ts --bundle --platform=node --target=node16.14 --loader:.html=text --external:./node_modules/* --outfile=dist/AboutPage/index.js",
-		"build": "npm run build:service && npm run build:about",
+		"build": "node build.js",
 		"check": "tsc --noEmit",
 		"prestart": "npm run build",
-		"start": "func start --typescript",
+		"start": "func start --javascript",
 		"format": "prettier --write ."
 	},
 	"dependencies": {
