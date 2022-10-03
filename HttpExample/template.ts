@@ -1,5 +1,3 @@
-import { Readability } from "@mozilla/readability";
-
 interface Article {
 	title: string;
 	byline: string;
@@ -53,7 +51,7 @@ function renderArticle(article: Article, url: string): string {
 				<h2>${article.byline || ""}</h2>
 				${article.content}
 			</body>
-		</html>`
+		</html>`;
 }
 
 export default renderArticle;
