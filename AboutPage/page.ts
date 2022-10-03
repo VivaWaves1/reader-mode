@@ -9,6 +9,7 @@ let page = `<!DOCTYPE html>
 	<style>
 		body {
 			margin: 0;
+            font-family: sans-serif;
 		}
 
 		.search {
@@ -107,7 +108,7 @@ let page = `<!DOCTYPE html>
 			details. You wait for a whole minute for this page to load. Once it finally loads, a box pops up, asking for
 			your permission to accept cookies. You're concerned about your privacy, but you know that rejecting will
 			just bring you to another menu, and you don't want to put in the mental effort. So you click accept, and
-			start reading. The page lags as you scroll like you're dragging the scroll-bar across jaggged rocks.</p>
+			start reading. The page lags as you scroll like you're dragging the scroll-bar across jaggged rocks. Ads jump out at you everywhere, covering half of your page.</p>
 		<p>And then, the words fade away. You're out of free articles. You need an account to read more. At this point,
 			you close the tab out of frustration, and go do <a title="Random XKCD Comic"
 				href="https://c.xkcd.com/random/comic/">something else</a> with your time.</p>
