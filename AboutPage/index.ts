@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import page from "./index.html"
+import page from "./index.html";
 
 const httpTrigger: AzureFunction = async function (
 	context: Context,
