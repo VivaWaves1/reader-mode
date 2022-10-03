@@ -1,5 +1,3 @@
-import { Readability } from "@mozilla/readability";
-
 interface Article {
 	title: string;
 	byline: string;

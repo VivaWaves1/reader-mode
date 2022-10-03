@@ -1,7 +1,7 @@
 import { AzureFunction, Context, HttpRequest, HttpResponse } from "@azure/functions"
 import { Readability } from "@mozilla/readability";
 import { JSDOM } from "jsdom";
-import axios from "axios";
+import fetch from "cross-fetch";
 
 import renderArticle from "./template";
 
@@ -51,8 +51,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 		};
 		return;
 	}
-	const response = await axios.get(normalizeURL(url));
-	const body = response.data;
+	const response = await fetch(normalizeURL(url));
+	const body = await response.text();
 	const doc = new JSDOM(body);
 	rerouteLinks(doc, normalizeURL(url), getHost(req), req.headers["x-forwarded-proto"] === "https");
 	let reader = new Readability(doc.window.document);
