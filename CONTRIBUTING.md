@@ -15,3 +15,5 @@ npm install
 ```
 npm start
 ```
+
+Try it out! http://localhost:7071/?q=https://randomascii.wordpress.com/2022/09/29/why-modern-software-is-slow-windows-voice-recorder/
