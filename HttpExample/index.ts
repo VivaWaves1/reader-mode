@@ -42,9 +42,12 @@ function rerouteLinks(html: JSDOM, url: string, base: string, https: boolean): v
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
 	let url = req.query.q;
 	if (!url) {
+		// redirect to /about
 		context.res = {
-			status: 400,
-			body: "Please pass a url on the query string or in the request body. Example: https://read.jonot.me/?q=https://www.nytimes.com/2020/05/29/us/politics/trump-coronavirus.html"
+			status: 302,
+			headers: {
+				"Location": "/about"
+			}
 		};
 		return;
 	}
