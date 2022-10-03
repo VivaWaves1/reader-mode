@@ -34,7 +34,6 @@ let page = `<!DOCTYPE html>
 
 		.sbox {
 			width: 100%;
-			height: 100%;
 			border-radius: 10px;
 			border: none;
 			font-size: 1.2rem;
