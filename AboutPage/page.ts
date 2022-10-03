@@ -129,6 +129,6 @@ let page = `<!DOCTYPE html>
 	</div>
 </body>
 
-</html>`
+</html>`;
 
 export default page;

@@ -6,10 +6,7 @@
 			"direction": "in",
 			"route": "/",
 			"name": "req",
-			"methods": [
-				"get",
-				"post"
-			]
+			"methods": ["get", "post"]
 		},
 		{
 			"type": "http",
@@ -18,5 +15,4 @@
 		}
 	],
 	"scriptFile": "../dist/HttpExample/index.js"
-	
 }
